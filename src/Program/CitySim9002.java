@@ -5,22 +5,79 @@
  */
 package Program;
 
-import Domain.Validator;
+import java.util.Random;
 
 /**
  *
- * @author AsphaltPanthers
+ * @author Linzi Zhang
  */
 public class CitySim9002 {
-    public static String errorMessage = "Please enter one integer argument, seed";
+    private static int VISITOR_num = 4;
+    private static int LOCATION_num = 5;
+    public static String errMsg1 = "Please enter one integer argument, seed";
     
-    public static int main(String[] args) {
-        if (new Validator().validateArguments(args)) {
-            return 0;
+    
+    public static void main(String[] args) {
+        //to determine if the input is only one integer
+        if (isInteger(args)) {
+            System.out.println(errMsg1);
+            System.exit(0);
         }
-        else {
-            System.out.println(errorMessage);
-            return -1;
-        }
+        //set the seed
+        int seed = Integer.parseInt(args[0]);
+        System.out.println("Welcome to CitySim!  Your seed is " +seed+ " .");	
+	Visitor visitors = new Visitor();	
+		String nextVisitor = "";
+		
+		Locations locations = new Locations();
+		String nextLocation = "";
+		
+		Getrandom visGenerator = new Getrandom(seed, VISITOR_num);
+		String[] visitorList = visitors.visitor(visGenerator);
+		
+		Random generator = new Random(seed);
+		
+		for(int i=1; i<=5; i++) {
+			//1. generate a visitor
+			nextVisitor = visitorList[i-1];		
+			System.out.println("Visitor " + i + " is a " + nextVisitor);
+			
+			//2. visit location
+			nextLocation = locations.getLocation(generator.nextInt(LOCATION_num) + 1);
+			
+			//when it's the first vist, the visitor cannot leave.
+			while(nextLocation.compareTo("left") == 0) {
+				nextLocation = locations.getLocation(generator.nextInt(LOCATION_num) + 1);
+			}
+			
+			while(nextLocation.compareTo("left") != 0) {
+				System.out.println("Visitor " + i + " is going to " + nextLocation + "!");
+				if(visitors.likeLocation(nextVisitor, nextLocation))
+					System.out.println("Visitor " + i + " did like " + nextLocation + ".");
+				else
+					System.out.println("Visitor " + i + " did not like " + nextLocation + ".");
+				nextLocation = locations.getLocation(generator.nextInt(LOCATION_num) + 1);
+			}
+			
+			System.out.println("Visitor " + i + " has left the city.");
+			System.out.println("***");
+		}
+	}
+	
+	
+	 //to ensure the input is a integer
+
+	public static boolean isInteger(String[] arg) {
+		if(arg.length != 1) return false;
+		
+		try{
+                    Integer.parseInt(arg[0]);
+		} catch(NumberFormatException e) {
+			return false;
+		} catch(NullPointerException e) {
+			return false;
+		}	
+		return true;
+	}	
     }
-}
+
