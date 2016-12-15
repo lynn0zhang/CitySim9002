@@ -75,11 +75,6 @@ public class VisitorTest {
 		
 	}
 	
-	
-	@Test
-        public void testLikeLocation00(){
-            
-        }
         
         
         
