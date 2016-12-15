@@ -12,6 +12,9 @@ public class GetrandomTest {
 	public void testgenerator() {
 		assertTrue(generator.generator()>=0 && generator.generator()<5);
 	}
+        
+        
+        
 	
 	 // 5 index for visitors should be different
 	 // Return the method to produce an int array

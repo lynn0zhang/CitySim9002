@@ -7,6 +7,7 @@ package Program;
 
 import java.util.Random;
 
+
 /**
  *
  * @author Linzi Zhang
@@ -19,7 +20,7 @@ public class CitySim9002 {
     
     public static void main(String[] args) {
         //to determine if the input is only one integer
-        if (isInteger(args)) {
+        if (!new Validator().Validate(args)) {
             System.out.println(errMsg1);
             System.exit(0);
         }
@@ -65,19 +66,6 @@ public class CitySim9002 {
 	}
 	
 	
-	 //to ensure the input is a integer
-
-	public static boolean isInteger(String[] arg) {
-		if(arg.length != 1) return false;
-		
-		try{
-                    Integer.parseInt(arg[0]);
-		} catch(NumberFormatException e) {
-			return false;
-		} catch(NullPointerException e) {
-			return false;
-		}	
-		return true;
-	}	
+	
     }
 

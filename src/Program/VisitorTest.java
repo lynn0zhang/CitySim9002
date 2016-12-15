@@ -1,8 +1,11 @@
 package Program;
 
+import org.junit.Assert;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class VisitorTest {
 	private Visitor visitor = new Visitor();
@@ -30,6 +33,8 @@ public class VisitorTest {
 		}
 		assertTrue(areEqual);
 	}
+        
+        
 
 	 // Using real random and visitor class
 	 // five integers should be generated
@@ -70,11 +75,19 @@ public class VisitorTest {
 		
 	}
 	
-	//Business Person should like 2 - Squirrel Hill
+	
+	@Test
+        public void testLikeLocation00(){
+            
+        }
+        
+        
+        
+        //Business Person should like 2 - Squirrel Hill
 	//Given the visitor to be Business Person
 	//Given the location to be 2
 	//The likeLocation function should return true
-	@Test
+        @Test
 	public void testLikeLocation0() {
 		
 		String visitor = "Business Person";
