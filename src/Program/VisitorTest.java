@@ -58,7 +58,8 @@ public class VisitorTest {
 	}
 	
 	
-	 // Every element has unique index in visitors list
+	 //Double + Stub 
+         //Every element has unique index in visitors list
 	 // Mock the visitors generator
 	 // Set the random array to be {3, 2, 1, 3, 0}
 	 // fiveVisiting should return a string array
